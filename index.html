@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Is This Internship Real? | Student Off-Campus Vetting & Verification Portal</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              300: '#7cc5fb',
+              400: '#38a5f6',
+              500: '#0e87eb',
+              600: '#026bc9',
+              700: '#0355a3',
+              800: '#074885',
+              900: '#0c3d6e',
+              950: '#061e38',
+            },
+            danger: {
+              50: '#fef2f2',
+              500: '#ef4444',
+              600: '#dc2626',
+              950: '#450a0a',
+            },
+            warning: {
+              500: '#f59e0b',
+              950: '#451a03',
+            },
+            safe: {
+              500: '#10b981',
+              950: '#022c22',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glow-brand {
+      box-shadow: 0 0 35px -8px rgba(14, 135, 235, 0.35);
+    }
+
+    .pulse-danger {
+      animation: pulseDanger 2s infinite;
+    }
+    @keyframes pulseDanger {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- ================= TOP NAV BAR ================= -->
+  <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo & Academic Badge -->
+      <div class="flex items-center space-x-3">
+        <a href="#analyzer" class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-sky-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-base font-extrabold tracking-tight text-white">Verify<span class="text-brand-400">Intern</span></span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-500/10 text-brand-300 border border-brand-500/20">LPU · P24</span>
+            </div>
+            <p class="text-[11px] text-slate-400 hidden sm:block">Is This Internship Real? · INT335 Design Thinking</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- App Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-1 text-xs font-medium">
+        <a href="#analyzer" class="px-3 py-1.5 rounded-lg text-slate-200 hover:text-white hover:bg-slate-900 transition flex items-center gap-1.5">
+          <i data-lucide="scan" class="w-3.5 h-3.5 text-brand-400"></i> Listing Analyzer
+        </a>
+        <a href="#walkthrough" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-1.5">
+          <i data-lucide="compass" class="w-3.5 h-3.5 text-emerald-400"></i> Verification Walkthrough
+        </a>
+        <a href="#experience-bank" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-1.5">
+          <i data-lucide="users" class="w-3.5 h-3.5 text-amber-400"></i> Senior Bank & Scam Tracker
+        </a>
+        <a href="#email-templates" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-1.5">
+          <i data-lucide="message-square" class="w-3.5 h-3.5 text-purple-400"></i> Recruiter Scripts
+        </a>
+      </nav>
+
+      <!-- Action: Report & DT Context -->
+      <div class="flex items-center space-x-2.5">
+        <button onclick="openModal('report-modal')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/30 transition">
+          <i data-lucide="flag" class="w-3.5 h-3.5"></i>
+          <span>Report Scam</span>
+        </button>
+
+        <button onclick="openModal('dt-context-modal')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-850 text-slate-300 border border-slate-800 transition" title="View Design Thinking Research & Academic Framework">
+          <i data-lucide="info" class="w-3.5 h-3.5 text-brand-400"></i>
+          <span class="hidden sm:inline">Project Info</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN APPLICATION ================= -->
+  <main class="flex-1 pb-24">
+
+    <!-- HERO / QUICK VETTING DISPATCH -->
+    <section class="relative pt-10 pb-12 overflow-hidden border-b border-slate-900">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-gradient-to-r from-brand-600/15 via-indigo-600/10 to-rose-600/10 blur-[130px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 relative">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-800 text-xs font-mono text-slate-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>Decision Support Aid for Students · INT335 P24</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight max-w-4xl mx-auto">
+          Don't get scammed or ghosted.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-sky-300 to-teal-300">
+            Verify your off-campus internship in 60 seconds.
+          </span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto font-normal">
+          Check offers for <strong class="text-rose-400">upfront fee scams</strong>, <strong class="text-indigo-300">unpaid ghost assignments</strong>, and <strong class="text-amber-400">fake domains</strong>. Built on 10+ student interviews and senior experience at LPU.
+        </p>
+
+        <!-- Quick Test Buttons -->
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-2 text-xs font-mono">
+          <span class="text-slate-500">Quick Test Realistic Examples:</span>
+          <button onclick="loadSample('scam')" class="px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-300 border border-rose-500/30 hover:bg-rose-500/20 transition flex items-center gap-1">
+            <i data-lucide="alert-triangle" class="w-3 h-3"></i> Northstar Labs (₹750 Fee Scam)
+          </button>
+          <button onclick="loadSample('ghost')" class="px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/30 hover:bg-amber-500/20 transition flex items-center gap-1">
+            <i data-lucide="ghost" class="w-3 h-3"></i> Apex Analytics (Ghost / 4-Day Task)
+          </button>
+          <button onclick="loadSample('genuine')" class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/20 transition flex items-center gap-1">
+            <i data-lucide="check-circle" class="w-3 h-3"></i> PaySwift (Verified Tech Role)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: THE INTERNSHIP LISTING ANALYZER (CORE SOLUTION) -->
+    <section id="analyzer" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Input & Details Form -->
+        <div class="lg:col-span-7 bg-slate-900/90 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-4 mb-6">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-wider text-brand-400 font-semibold">STEP 01 OF VETTING</span>
+              <h2 class="text-xl font-bold text-white mt-0.5">Paste or Enter Internship Details</h2>
+            </div>
+            <button onclick="clearAnalyzerForm()" class="text-xs text-slate-400 hover:text-slate-200 transition font-mono flex items-center gap-1">
+              <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Reset Form
+            </button>
+          </div>
+
+          <form id="vetting-form" onsubmit="event.preventDefault(); runVettingAnalysis();" class="space-y-4">
+            <!-- Company & Role -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">Company / Organization Name *</label>
+                <div class="relative">
+                  <input type="text" id="inp-company" required placeholder="e.g. Northstar Labs, Tata, Infosys..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition">
+                  <span id="company-status-icon" class="absolute right-3 top-3 text-slate-600"></span>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">Role / Job Title *</label>
+                <input type="text" id="inp-role" required placeholder="e.g. Growth Intern, Frontend Dev..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition">
+              </div>
+            </div>
+
+            <!-- Recruiter Email & Stipend -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">Recruiter Contact / Email</label>
+                <input type="text" id="inp-email" placeholder="e.g. hr.company@gmail.com or @corp.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition">
+                <span class="text-[11px] text-slate-500 mt-1 block">Free emails like @gmail/@outlook often indicate unverified recruiters.</span>
+              </div>
+              <div>
+                <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">Stipend Mentioned</label>
+                <input type="text" id="inp-stipend" placeholder="e.g. ₹15,000 / Unpaid / 'Performance based'" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition">
+              </div>
+            </div>
+
+            <!-- Full Job Description / WhatsApp Message / Offer Email -->
+            <div>
+              <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">
+                Paste Listing Text, WhatsApp Message, or Offer Letter Extract *
+              </label>
+              <textarea id="inp-text" rows="5" required placeholder="Paste the job description, WhatsApp message, Telegram broadcast, or onboarding instructions here..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition leading-relaxed"></textarea>
+            </div>
+
+            <!-- Quick Interactive Checklist: What made you hesitate? -->
+            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+              <span class="text-xs font-mono uppercase tracking-wider text-brand-400 font-semibold block">
+                Quick Warning Sign Checklist (Check what applies):
+              </span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-900 border border-slate-800 cursor-pointer hover:bg-slate-850 transition">
+                  <input type="checkbox" id="chk-fee" class="rounded border-slate-700 text-brand-500 focus:ring-0">
+                  <span class="text-slate-300">Asks for registration / kit / slot fee</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-900 border border-slate-800 cursor-pointer hover:bg-slate-850 transition">
+                  <input type="checkbox" id="chk-task" class="rounded border-slate-700 text-brand-500 focus:ring-0">
+                  <span class="text-slate-300">Multi-day unpaid take-home task</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-900 border border-slate-800 cursor-pointer hover:bg-slate-850 transition">
+                  <input type="checkbox" id="chk-interview" class="rounded border-slate-700 text-brand-500 focus:ring-0">
+                  <span class="text-slate-300">Direct selection without any interview</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-lg bg-slate-900 border border-slate-800 cursor-pointer hover:bg-slate-850 transition">
+                  <input type="checkbox" id="chk-urgency" class="rounded border-slate-700 text-brand-500 focus:ring-0">
+                  <span class="text-slate-300">High pressure / "offer expires in 2 hours"</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-600 via-brand-500 to-sky-500 hover:from-brand-500 hover:to-sky-400 text-white font-semibold text-sm transition shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2">
+              <i data-lucide="shield-alert" class="w-4 h-4"></i>
+              <span>Evaluate Opportunity & Generate Risk Report</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: Real-time Analysis Report & Guidance Box -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Risk Meter Result Card -->
+          <div id="risk-result-card" class="bg-slate-900/90 rounded-2xl border border-slate-800 p-6 shadow-xl transition-all duration-300">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="activity" class="w-4 h-4 text-brand-400"></i>
+                <span class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">Vetting Verdict</span>
+              </div>
+              <span id="verdict-status-pill" class="text-xs font-mono px-2.5 py-0.5 rounded-full font-bold bg-slate-800 text-slate-400 border border-slate-700">
+                Awaiting Input
+              </span>
+            </div>
+
+            <!-- Score Visualizer Gauge -->
+            <div class="text-center py-4 space-y-2">
+              <div class="text-5xl font-extrabold font-mono tracking-tight" id="verdict-score-display">--</div>
+              <p class="text-sm font-semibold text-white" id="verdict-headline">Submit listing details to analyze</p>
+              <p class="text-xs text-slate-400 max-w-sm mx-auto leading-relaxed" id="verdict-subtext">
+                Our rule engine cross-references known scam patterns, predatory keywords, email reputation, and peer incident reports.
+              </p>
+            </div>
+
+            <!-- Flags Breakdown List -->
+            <div class="mt-4 pt-4 border-t border-slate-800/80 space-y-2.5" id="verdict-flags-container">
+              <div class="text-xs font-mono uppercase text-slate-500">Flags & Observations:</div>
+              <div class="text-xs text-slate-500 italic p-3 rounded-lg bg-slate-950/60 border border-slate-800/60 text-center">
+                No active scan yet. Enter details on the left or click a sample.
+              </div>
+            </div>
+
+            <!-- Next Immediate Action Box -->
+            <div class="mt-5 p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1.5" id="verdict-action-box">
+              <div class="font-bold text-brand-400 flex items-center gap-1.5">
+                <i data-lucide="arrow-right-circle" class="w-4 h-4"></i> Recommended Next Action
+              </div>
+              <p class="text-slate-300" id="verdict-action-text">
+                Run an evaluation to receive a tailored step-by-step verification plan.
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick Peer Context / Senior Ground Truth Insight -->
+          <div class="p-5 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 text-xs space-y-2">
+            <div class="flex items-center justify-between text-[11px] font-mono text-amber-400">
+              <span class="flex items-center gap-1"><i data-lucide="shield" class="w-3.5 h-3.5"></i> LPU GROUND TRUTH</span>
+              <span>10+ Batch Interviews</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              <strong class="text-white">Rule #1:</strong> Legitimate companies <strong>pay you</strong> for your labor. If an organization asks for even ₹100 as a "seat booking fee", "training charge", or "verification kit", it is 100% a fraudulent scheme.
+            </p>
+            <div class="pt-2 text-[11px] text-slate-500 font-mono">
+              Research Question Insight: Confidence erosion hurts student careers longer than momentary monetary loss.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: VERIFICATION WALKTHROUGH (WHAT TO CHECK NEXT) -->
+    <section id="walkthrough" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-900">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 uppercase tracking-wider mb-2">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+            <span>STEP 02 OF VETTING</span>
+          </div>
+          <h2 class="text-3xl font-extrabold text-white tracking-tight">
+            Verification Walkthrough: Know What to Check Next
+          </h2>
+          <p class="text-sm text-slate-400 mt-2 max-w-2xl">
+            Don't rely on gut feeling. Use this 4-step protocol before sending resumes, signing agreements, or spending hours on assignments.
+          </p>
+        </div>
+        <div class="mt-4 md:mt-0 text-xs font-mono text-slate-400">
+          Average time: 4 minutes
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Step 1: Corporate Entity Check -->
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-brand-400 flex items-center justify-center font-bold font-mono text-sm mb-4">
+              01
+            </div>
+            <h3 class="text-base font-bold text-white">MCA Legal Search</h3>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Is the firm officially registered under the Ministry of Corporate Affairs in India (Private Limited / LLP)?
+            </p>
+            <div class="mt-4 p-3 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-300 space-y-1">
+              <strong class="text-brand-300 block">How to check:</strong>
+              1. Visit <code class="text-slate-400">mca.gov.in</code><br>
+              2. Go to "Master Data" → "View Company Master Data"<br>
+              3. Check paid-up capital and director names.
+            </div>
+          </div>
+          <a href="https://www.mca.gov.in/content/mca/global/en/mca/master-data/MDS.html" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center space-x-1 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-brand-300 font-mono transition">
+            <span>Open MCA Portal</span>
+            <i data-lucide="external-link" class="w-3 h-3"></i>
+          </a>
+        </div>
+
+        <!-- Step 2: LinkedIn & Employee Footprint -->
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold font-mono text-sm mb-4">
+              02
+            </div>
+            <h3 class="text-base font-bold text-white">Employee & Alumni Audit</h3>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Do real humans work there? Search LinkedIn for people listed under the company page.
+            </p>
+            <div class="mt-4 p-3 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-300 space-y-1">
+              <strong class="text-emerald-300 block">Look for:</strong>
+              • Full-time CTO / Tech Leads<br>
+              • Actual alumni from your college<br>
+              • Red Flag: 5,000 "followers" but only 2 employees with blank profiles.
+            </div>
+          </div>
+          <a href="https://www.linkedin.com/search/results/companies/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center space-x-1 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-emerald-300 font-mono transition">
+            <span>Search on LinkedIn</span>
+            <i data-lucide="external-link" class="w-3 h-3"></i>
+          </a>
+        </div>
+
+        <!-- Step 3: Domain & Email Verification -->
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold font-mono text-sm mb-4">
+              03
+            </div>
+            <h3 class="text-base font-bold text-white">Domain Age & Email Header</h3>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Scammers often register a new domain 15 days before launching mass WhatsApp hiring broadcasts.
+            </p>
+            <div class="mt-4 p-3 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-300 space-y-1">
+              <strong class="text-amber-300 block">How to check:</strong>
+              • WHOIS lookup for domain creation date<br>
+              • If domain is less than 3 months old, treat with high suspicion.<br>
+              • Verify contact email has same domain.
+            </div>
+          </div>
+          <a href="https://who.is" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center space-x-1 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-amber-300 font-mono transition">
+            <span>Lookup Domain on WHOIS</span>
+            <i data-lucide="external-link" class="w-3 h-3"></i>
+          </a>
+        </div>
+
+        <!-- Step 4: Assignment Labor Boundary -->
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold font-mono text-sm mb-4">
+              04
+            </div>
+            <h3 class="text-base font-bold text-white">Unpaid Labor Boundary</h3>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Detect "ghost internships" where companies exploit students to build production code or sales lists for free.
+            </p>
+            <div class="mt-4 p-3 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-300 space-y-1">
+              <strong class="text-purple-300 block">The Rule:</strong>
+              • Valid task: &lt; 3-4 hours, dummy dataset, synthetic problem.<br>
+              • Exploitation: "Build our client's complete CRM dashboard before interview".
+            </div>
+          </div>
+          <a href="#email-templates" class="mt-4 inline-flex items-center justify-center space-x-1 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-purple-300 font-mono transition">
+            <span>Use Script to Clarify Task</span>
+            <i data-lucide="arrow-down" class="w-3 h-3"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: SENIOR EXPERIENCE BANK & ANONYMIZED SCAM TRACKER -->
+    <section id="experience-bank" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-900">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400 uppercase tracking-wider mb-2">
+            <i data-lucide="database" class="w-3.5 h-3.5"></i>
+            <span>COMMUNITY GROUND TRUTH</span>
+          </div>
+          <h2 class="text-3xl font-extrabold text-white tracking-tight">
+            Senior Experience Bank & Scam Tracker
+          </h2>
+          <p class="text-sm text-slate-400 mt-2 max-w-2xl">
+            Real patterns reported by seniors and active applicants. Check what others experienced before you apply.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="mt-4 md:mt-0 flex flex-wrap gap-2 text-xs font-mono">
+          <button onclick="filterBank('all')" id="bank-filter-all" class="px-3 py-1.5 rounded-lg bg-brand-500 text-white font-medium transition">All Records</button>
+          <button onclick="filterBank('scam')" id="bank-filter-scam" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-rose-400 border border-slate-800 transition">🚩 Reported Scams</button>
+          <button onclick="filterBank('ghost')" id="bank-filter-ghost" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-800 transition">👻 Ghost / Unpaid</button>
+          <button onclick="filterBank('verified')" id="bank-filter-verified" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-800 transition">✅ Verified Genuine</button>
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="mb-6 relative">
+        <input type="text" id="bank-search-input" onkeyup="searchBank()" placeholder="Search company name, role, or keyword (e.g. 'Northstar', 'webdev', 'deposit', 'unpaid')..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 pl-10 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition">
+        <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5"></i>
+      </div>
+
+      <!-- Records Grid Container -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="bank-records-container">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- SECTION 4: RECRUITER RESPONSE SCRIPTS & RED-LINE EMAIL GENERATOR -->
+    <section id="email-templates" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-900">
+      <div class="mb-10">
+        <div class="inline-flex items-center gap-1.5 text-xs font-mono text-purple-400 uppercase tracking-wider mb-2">
+          <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+          <span>ASSERTIVE STUDENT TOOLKIT</span>
+        </div>
+        <h2 class="text-3xl font-extrabold text-white tracking-tight">
+          Recruiter Scripts & Email Templates
+        </h2>
+        <p class="text-sm text-slate-400 mt-2 max-w-2xl">
+          Don't know what to reply when a recruiter asks for money or gives a suspiciously vague offer? Copy and send these professional boundary-setting templates.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Template 1: Refusing Upfront Fee -->
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-rose-400 font-bold">TEMPLATE 01</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">Refuse Upfront Fee</span>
+            </div>
+            <h3 class="text-base font-bold text-white mt-2">"Politely Declining Pay-to-Work Demands"</h3>
+            <p class="text-xs text-slate-400 mt-1">When asked to pay for a "certificate registration", "laptop security deposit", or "training slot".</p>
+            
+            <div class="mt-4 p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 font-mono leading-relaxed" id="script-fee">
+Dear Recruiter,
+
+Thank you for considering my profile for the role. 
+
+However, per University Placement Cell (T&P) regulations and ethical employment guidelines, students are strictly advised against paying any upfront slot reservation, training, or onboarding fees for internship programs. 
+
+If this position requires any financial payment from candidates, please withdraw my application. Otherwise, I would be happy to proceed with standard technical evaluations.
+            </div>
+          </div>
+          <button onclick="copyScript('script-fee', this)" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-xs font-semibold text-slate-200 border border-slate-700 transition flex items-center justify-center gap-1.5">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Copy Template</span>
+          </button>
+        </div>
+
+        <!-- Template 2: Requesting Official Email & CIN -->
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-brand-400 font-bold">TEMPLATE 02</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-brand-500/10 text-brand-300 border border-brand-500/20">Verify Legitimacy</span>
+            </div>
+            <h3 class="text-base font-bold text-white mt-2">"Asking for Corporate Email & Entity Details"</h3>
+            <p class="text-xs text-slate-400 mt-1">When contacted via WhatsApp, Telegram, or personal @gmail/@outlook accounts.</p>
+            
+            <div class="mt-4 p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 font-mono leading-relaxed" id="script-email">
+Dear Recruiter,
+
+Thank you for reaching out regarding this opportunity.
+
+To verify this role with our University Training & Placement department for internship credit/NOC records, could you please email me from your official corporate domain address (@companyname.com) along with the company's registered Corporate Identification Number (CIN / LLPIN)?
+
+Looking forward to hearing from you through the official channel.
+            </div>
+          </div>
+          <button onclick="copyScript('script-email', this)" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-xs font-semibold text-slate-200 border border-slate-700 transition flex items-center justify-center gap-1.5">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Copy Template</span>
+          </button>
+        </div>
+
+        <!-- Template 3: Setting Boundaries on Unpaid Assignment Labor -->
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-amber-400 font-bold">TEMPLATE 03</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">Ghost Task Boundary</span>
+            </div>
+            <h3 class="text-base font-bold text-white mt-2">"Clarifying Scope of Excessive Take-Home Tasks"</h3>
+            <p class="text-xs text-slate-400 mt-1">When asked to build a full commercial feature or scrape live data prior to any interview.</p>
+            
+            <div class="mt-4 p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 font-mono leading-relaxed" id="script-task">
+Dear Team,
+
+I reviewed the take-home assessment. Given the scope involves production-grade modules that require over 20 hours of engineering, I would like to clarify the evaluation structure.
+
+I have already published open-source repositories and portfolio projects demonstrating these exact competencies (attached below). 
+
+Could we schedule a 20-minute technical screening call to review my existing code before I undertake an extended assignment?
+            </div>
+          </div>
+          <button onclick="copyScript('script-task', this)" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-xs font-semibold text-slate-200 border border-slate-700 transition flex items-center justify-center gap-1.5">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Copy Template</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: UNIVERSITY T&P GUIDELINES & SAFE LIMITS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-900">
+      <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-start space-x-4">
+          <div class="w-11 h-11 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center shrink-0 mt-0.5">
+            <i data-lucide="shield-alert" class="w-6 h-6"></i>
+          </div>
+          <div class="space-y-1">
+            <h4 class="text-sm font-bold text-white">Safe Limits & University Guidelines (INT335 P24 Boundary)</h4>
+            <p class="text-xs text-slate-400 max-w-3xl leading-relaxed">
+              VerifyIntern provides decision support to guide student judgement; it does <strong>not guarantee legal legitimacy</strong>. If you suspect criminal fraud, notify university Training & Placement authorities and report immediately to the National Cyber Crime Reporting Portal (<a href="https://cybercrime.gov.in" target="_blank" rel="noopener noreferrer" class="text-brand-400 underline">cybercrime.gov.in</a>).
+            </p>
+          </div>
+        </div>
+        <button onclick="openModal('report-modal')" class="shrink-0 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold transition shadow-md shadow-rose-600/20">
+          Submit Incident Report
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-950 border-t border-slate-900 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2">
+        <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+        <span class="text-slate-300 font-medium">VerifyIntern</span>
+        <span>·</span>
+        <span>A Design Thinking Project (P24 · INT335 · LPU)</span>
+      </div>
+      <div class="flex items-center space-x-4 text-[11px] font-mono">
+        <a href="#analyzer" class="hover:text-slate-300 transition">Analyzer</a>
+        <a href="#walkthrough" class="hover:text-slate-300 transition">Walkthrough</a>
+        <a href="#experience-bank" class="hover:text-slate-300 transition">Senior Bank</a>
+        <button onclick="openModal('dt-context-modal')" class="text-brand-400 hover:underline">Academic Rationale</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODAL: REPORT AN INCIDENT / SCAM ================= -->
+  <div id="report-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+      <button onclick="closeModal('report-modal')" class="absolute right-4 top-4 text-slate-400 hover:text-white transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center">
+          <i data-lucide="flag" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white">Report a Suspicious Listing</h3>
+          <p class="text-xs text-slate-400">Help protect fellow students at LPU and other colleges.</p>
+        </div>
+      </div>
+
+      <form onsubmit="event.preventDefault(); submitCommunityReport();" class="space-y-3 pt-2 text-xs">
+        <div>
+          <label class="block font-mono text-slate-400 mb-1">Company / Entity Name *</label>
+          <input type="text" id="rep-company" required placeholder="e.g. Northstar Labs" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-brand-500">
+        </div>
+
+        <div>
+          <label class="block font-mono text-slate-400 mb-1">Incident Category *</label>
+          <select id="rep-category" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-brand-500">
+            <option value="scam">Fee Scam (Demanded money for kit/training/slot)</option>
+            <option value="ghost">Ghost Listing / Exploitative Unpaid Assignment</option>
+            <option value="spam">Spam / Unsolicited WhatsApp Hiring Broadcast</option>
+            <option value="fake">Fake Impersonation of Legitimate Corporate Brand</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-mono text-slate-400 mb-1">Amount Demanded (If Any)</label>
+          <input type="text" id="rep-fee" placeholder="e.g. ₹750 for verification slot" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-brand-500">
+        </div>
+
+        <div>
+          <label class="block font-mono text-slate-400 mb-1">What happened? Warning signs observed *</label>
+          <textarea id="rep-details" rows="3" required placeholder="Describe what they requested, what contact method they used, and why you became suspicious..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-brand-500"></textarea>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="w-full py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold transition">
+            Publish Anonymous Report to Senior Bank
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: DESIGN THINKING ACADEMIC CONTEXT (INT335 P24) ================= -->
+  <div id="dt-context-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 sm:p-8 space-y-4 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal('dt-context-modal')" class="absolute right-4 top-4 text-slate-400 hover:text-white transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="border-b border-slate-800 pb-3">
+        <span class="text-xs font-mono text-brand-400 font-bold uppercase">INT335 · LPU · PROJECT P24</span>
+        <h3 class="text-xl font-bold text-white mt-1">Design Thinking Solution Architecture</h3>
+        <p class="text-xs text-slate-400">How this web tool implements the 5 design thinking phases.</p>
+      </div>
+
+      <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+          <strong class="text-brand-400 font-mono block mb-1">01 EMPATHIZE</strong>
+          Conducted 10+ student interviews across LPU searchers, seniors, scam victims, and T&P staff. Identified that confidence loss causes worse long-term career paralysis than direct financial loss.
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+          <strong class="text-amber-400 font-mono block mb-1">02 DEFINE (POV & HMW)</strong>
+          "Students searching for internships need a quick, trustworthy way to assess an opportunity because peer experiences are scattered."<br>
+          <em>How might we help students judge quickly whether an opportunity is real and worth it?</em>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+          <strong class="text-emerald-400 font-mono block mb-1">03 IDEATE & SCREEN</strong>
+          Integrated 4 core concepts: Red-Flag Automated Checklist, Senior Experience Bank, MCA/Domain Verification Walkthrough, and Recruiter Response Scripts.
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+          <strong class="text-purple-400 font-mono block mb-1">04 PROTOTYPE (THIS INTERACTIVE PORTAL)</strong>
+          Engineered a 4-step live flow: Input Listing → Auto-Detect Missing Details → Step-by-Step Vetting Action → Clear Judgement.
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+          <strong class="text-rose-400 font-mono block mb-1">05 TEST & SAFE LIMITS</strong>
+          Evaluation criteria: Task clarity, Next action clarity, Reasoning quality, and Safe limits awareness ("Decision support, not a guarantee").
+        </div>
+      </div>
+
+      <div class="pt-2 text-right">
+        <button onclick="closeModal('dt-context-modal')" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-white transition font-mono">
+          Close Window
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= APPLICATION SCRIPTS ================= -->
+  <script>
+    lucide.createIcons();
+
+    // 1. Senior Experience Bank Initial Data
+    let bankRecords = [
+      {
+        id: "rec-1",
+        company: "Northstar Labs",
+        role: "Growth Intern",
+        type: "scam",
+        badge: "🚩 Fee Scam (Reported)",
+        details: "Demanded ₹750 as a 'slot reserve & certificate registration charge' immediately upon receiving application. Recruiter emailed from hr.northstar@gmail.com with no company website.",
+        seniorTip: "Never pay upfront. Legitimate firms pay interns, never vice-versa.",
+        date: "Reported by B.Tech 3rd Year (LPU)",
+        upvotes: 42
+      },
+      {
+        id: "rec-2",
+        company: "Apex Analytics Ltd",
+        role: "Data Analyst Trainee",
+        type: "ghost",
+        badge: "👻 Ghost / Unpaid Task",
+        details: "Assigned a 4-day intensive take-home assignment requiring scraping 500 LinkedIn records and building a production dashboard. Ghosted immediately after submission.",
+        seniorTip: "If take-home exceeds 3-4 hours and uses live client data without NDA or payment, refuse it.",
+        date: "Reported by MCA Senior (LPU)",
+        upvotes: 31
+      },
+      {
+        id: "rec-3",
+        company: "PaySwift Technologies",
+        role: "Software Engineering Intern",
+        type: "verified",
+        badge: "✅ Verified Genuine",
+        details: "Standard professional interview: 1 coding round + 45-min engineering screening. Offer letter sent from official @payswift.tech domain. Fixed stipend ₹35,000/mo.",
+        seniorTip: "Verified on MCA portal (CIN active). Mentor assigned on Day 1.",
+        date: "Placed Senior · CSE",
+        upvotes: 56
+      },
+      {
+        id: "rec-4",
+        company: "Global Tech Digital Sol.",
+        role: "Web Development Intern",
+        type: "scam",
+        badge: "🚩 Fee Scam (Reported)",
+        details: "WhatsApp broadcast promising 'Guaranteed MNC Offer Letter'. Later asked for ₹1,200 for 'ISO Certified Training Kit'.",
+        seniorTip: "Common mass broadcast template. Immediately block and report to T&P.",
+        date: "Reported by ECE 2nd Year",
+        upvotes: 27
+      },
+      {
+        id: "rec-5",
+        company: "Nexus AI Research",
+        role: "AI Prompt Associate",
+        type: "ghost",
+        badge: "👻 Perpetual Ghost Listing",
+        details: "Role has been listed for 11 months continuously on job boards. Hundreds of applicants submit resumes and complete free test prompts with zero interview calls.",
+        seniorTip: "Used to train their dataset on student labor for free.",
+        date: "Reported by BCA Student",
+        upvotes: 19
+      }
+    ];
+
+    // Render Senior Bank Records
+    function renderBank(records) {
+      const container = document.getElementById('bank-records-container');
+      if (records.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full p-8 text-center bg-slate-900 rounded-2xl border border-slate-800 text-slate-400 text-xs">
+            No matching records found in Senior Bank. Try a different keyword or report an incident above!
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = records.map(r => {
+        let borderClass = r.type === 'scam' ? 'border-rose-500/30' : (r.type === 'ghost' ? 'border-amber-500/30' : 'border-emerald-500/30');
+        let badgeClass = r.type === 'scam' ? 'bg-rose-500/15 text-rose-300 border-rose-500/30' : (r.type === 'ghost' ? 'bg-amber-500/15 text-amber-300 border-amber-500/30' : 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30');
+        
+        return `
+          <div class="p-6 rounded-2xl bg-slate-900 border ${borderClass} flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-start justify-between">
+                <div>
+                  <span class="text-[11px] font-mono font-bold px-2 py-0.5 rounded border ${badgeClass}">
+                    ${r.badge}
+                  </span>
+                  <h3 class="text-lg font-bold text-white mt-2">${r.company}</h3>
+                  <p class="text-xs text-brand-400 font-mono">${r.role}</p>
+                </div>
+              </div>
+
+              <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+                ${r.details}
+              </p>
+
+              <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800/80 text-[11px] text-slate-400">
+                <strong class="text-slate-200 block mb-0.5">Senior Advice:</strong>
+                "${r.seniorTip}"
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span>${r.date}</span>
+              <button onclick="upvoteRecord('${r.id}')" class="hover:text-brand-400 transition flex items-center gap-1">
+                <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
+                <span id="vote-count-${r.id}">${r.upvotes}</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function filterBank(type) {
+      ['all', 'scam', 'ghost', 'verified'].forEach(t => {
+        const btn = document.getElementById(`bank-filter-${t}`);
+        if (t === type) {
+          btn.className = "px-3 py-1.5 rounded-lg bg-brand-500 text-white font-medium transition";
+        } else {
+          btn.className = "px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition";
+        }
+      });
+
+      if (type === 'all') {
+        renderBank(bankRecords);
+      } else {
+        renderBank(bankRecords.filter(r => r.type === type));
+      }
+    }
+
+    function searchBank() {
+      const q = document.getElementById('bank-search-input').value.toLowerCase();
+      const filtered = bankRecords.filter(r => 
+        r.company.toLowerCase().includes(q) || 
+        r.role.toLowerCase().includes(q) || 
+        r.details.toLowerCase().includes(q) ||
+        r.seniorTip.toLowerCase().includes(q)
+      );
+      renderBank(filtered);
+    }
+
+    function upvoteRecord(id) {
+      const rec = bankRecords.find(r => r.id === id);
+      if (rec) {
+        rec.upvotes++;
+        document.getElementById(`vote-count-${id}`).innerText = rec.upvotes;
+      }
+    }
+
+    // 2. Pre-made Realistic Samples Loader
+    const sampleProfiles = {
+      scam: {
+        company: "Northstar Labs",
+        role: "Growth Intern",
+        email: "hr.northstar@gmail.com",
+        stipend: "₹25,000 / month (Conditional)",
+        text: "Congratulations on shortlisting for Northstar Labs Growth Internship! We work with top founders. You will run marketing campaigns. To reserve your seat and process your student onboarding kit & training certificate, transfer ₹750 verification fee within 2 hours to UPI: payments-northstar@upi.",
+        chkFee: true,
+        chkTask: false,
+        chkInterview: true,
+        chkUrgency: true
+      },
+      ghost: {
+        company: "Apex Analytics Ltd",
+        role: "Data Analyst Trainee",
+        email: "recruitment@apex-jobs.outlook.com",
+        stipend: "Unpaid / Discretionary Performance Bonus",
+        text: "We are hiring interns to build our clients' lead generation pipeline. As part of stage 1, applicants must scrape 1,000 verified company emails in Mumbai and build an automated dashboard in Tableau. Submit the full functional sheet by tomorrow evening to be eligible for a round.",
+        chkFee: false,
+        chkTask: true,
+        chkInterview: true,
+        chkUrgency: true
+      },
+      genuine: {
+        company: "PaySwift Technologies",
+        role: "Software Engineering Intern",
+        email: "careers@payswift.tech",
+        stipend: "₹35,000 / month Fixed",
+        text: "PaySwift is hiring software engineering interns for our Bangalore office. Candidates will work with Go & PostgreSQL. Selection involves a 60-min coding round followed by a technical discussion with team leads. We do not ask for any fees or commercial work during evaluation.",
+        chkFee: false,
+        chkTask: false,
+        chkInterview: false,
+        chkUrgency: false
+      }
+    };
+
+    function loadSample(key) {
+      const s = sampleProfiles[key];
+      document.getElementById('inp-company').value = s.company;
+      document.getElementById('inp-role').value = s.role;
+      document.getElementById('inp-email').value = s.email;
+      document.getElementById('inp-stipend').value = s.stipend;
+      document.getElementById('inp-text').value = s.text;
+
+      document.getElementById('chk-fee').checked = s.chkFee;
+      document.getElementById('chk-task').checked = s.chkTask;
+      document.getElementById('chk-interview').checked = s.chkInterview;
+      document.getElementById('chk-urgency').checked = s.chkUrgency;
+
+      runVettingAnalysis();
+
+      // Smooth scroll to analyzer
+      document.getElementById('analyzer').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function clearAnalyzerForm() {
+      document.getElementById('vetting-form').reset();
+      const statusPill = document.getElementById('verdict-status-pill');
+      statusPill.className = "text-xs font-mono px-2.5 py-0.5 rounded-full font-bold bg-slate-800 text-slate-400 border border-slate-700";
+      statusPill.innerText = "Awaiting Input";
+
+      document.getElementById('verdict-score-display').innerText = "--";
+      document.getElementById('verdict-headline').innerText = "Submit listing details to analyze";
+      document.getElementById('verdict-subtext').innerText = "Our rule engine cross-references known scam patterns, predatory keywords, email reputation, and peer incident reports.";
+      document.getElementById('verdict-flags-container').innerHTML = `
+        <div class="text-xs font-mono uppercase text-slate-500">Flags & Observations:</div>
+        <div class="text-xs text-slate-500 italic p-3 rounded-lg bg-slate-950/60 border border-slate-800/60 text-center">
+          No active scan yet. Enter details on the left or click a sample.
+        </div>
+      `;
+      document.getElementById('verdict-action-text').innerText = "Run an evaluation to receive a tailored step-by-step verification plan.";
+    }
+
+    // 3. Core Vetting Rule Engine
+    function runVettingAnalysis() {
+      const company = document.getElementById('inp-company').value.trim();
+      const role = document.getElementById('inp-role').value.trim();
+      const email = document.getElementById('inp-email').value.trim().toLowerCase();
+      const stipend = document.getElementById('inp-stipend').value.trim().toLowerCase();
+      const text = document.getElementById('inp-text').value.trim().toLowerCase();
+
+      const chkFee = document.getElementById('chk-fee').checked;
+      const chkTask = document.getElementById('chk-task').checked;
+      const chkInterview = document.getElementById('chk-interview').checked;
+      const chkUrgency = document.getElementById('chk-urgency').checked;
+
+      let flags = [];
+      let riskScore = 0; // 0 (Safe) to 100 (Deadly Scam)
+
+      // Rule 1: Upfront Fee detection
+      const feeKeywords = ["fee", "charge", "pay", "deposit", "₹", "inr", "registration", "kit", "upi", "slot", "reserve"];
+      const textHasFee = feeKeywords.some(kw => text.includes(kw));
+
+      if (chkFee || (textHasFee && (text.includes("pay") || text.includes("transfer") || text.includes("deposit") || text.includes("₹")))) {
+        riskScore += 75;
+        flags.push({
+          type: "critical",
+          label: "CRITICAL: Upfront Fee / Payment Demand Detected",
+          desc: "Asking students to pay for onboarding, training, or seat booking violates fundamental employment law. Real companies never charge interns."
+        });
+      }
+
+      // Rule 2: Free / Non-corporate Email Domain
+      if (email.includes("@gmail.com") || email.includes("@yahoo.com") || email.includes("@outlook.com") || email.includes("@hotmail.com")) {
+        riskScore += 20;
+        flags.push({
+          type: "warning",
+          label: "Generic Webmail Recruiter Address",
+          desc: `Recruiter uses a free email (${email}). Legitimate recruiters contact you via @companydomain.com.`
+        });
+      }
+
+      // Rule 3: Extreme Pressure / False Urgency
+      if (chkUrgency || text.includes("2 hours") || text.includes("immediate joining") || text.includes("urgent") || text.includes("expires")) {
+        riskScore += 15;
+        flags.push({
+          type: "warning",
+          label: "High Urgency / FOMO Pressure",
+          desc: "Scammers create false deadlines to prevent you from consulting seniors, parents, or T&P advisors."
+        });
+      }
+
+      // Rule 4: No Interview / Direct Selection
+      if (chkInterview || text.includes("direct selection") || text.includes("no interview") || text.includes("direct joining")) {
+        riskScore += 15;
+        flags.push({
+          type: "warning",
+          label: "Instant Offer Without Technical Screening",
+          desc: "Reputable companies assess competencies via coding tests or interviews. Instant offers are almost always scam funnels."
+        });
+      }
+
+      // Rule 5: Exploitative Unpaid Task / Ghost Labor
+      if (chkTask || text.includes("scrape") || text.includes("client project") || text.includes("4-day") || text.includes("commercial")) {
+        riskScore += 25;
+        flags.push({
+          type: "warning",
+          label: "Suspicious Unpaid Commercial Work",
+          desc: "Extensive take-home tasks requiring commercial work without pay indicate a 'ghost listing' harvesting student output."
+        });
+      }
+
+      // Cap score
+      if (riskScore > 100) riskScore = 100;
+
+      // Update UI Display
+      const statusPill = document.getElementById('verdict-status-pill');
+      const scoreDisplay = document.getElementById('verdict-score-display');
+      const headline = document.getElementById('verdict-headline');
+      const subtext = document.getElementById('verdict-subtext');
+      const actionText = document.getElementById('verdict-action-text');
+      const flagsContainer = document.getElementById('verdict-flags-container');
+
+      if (riskScore >= 70) {
+        statusPill.className = "text-xs font-mono px-2.5 py-0.5 rounded-full font-bold bg-rose-500/20 text-rose-400 border border-rose-500/40";
+        statusPill.innerText = "DANGEROUS: SCAM DETECTED";
+        scoreDisplay.className = "text-5xl font-extrabold font-mono tracking-tight text-rose-500";
+        scoreDisplay.innerText = `${riskScore}% RISK`;
+        headline.innerText = "Do Not Transfer Any Money or Share Bank OTPs";
+        subtext.innerText = `This listing exhibits classic predatory pay-to-work scam signals. Cease contact with ${company}.`;
+        actionText.innerHTML = `
+          <strong>Action Plan:</strong><br>
+          1. <strong>Do not pay</strong> under any circumstance.<br>
+          2. Report recruiter message to LPU Training & Placement Cell.<br>
+          3. Send our <a href="#email-templates" class="text-rose-400 underline font-semibold">Refusal Template</a> if they continue to message you.
+        `;
+      } else if (riskScore >= 35) {
+        statusPill.className = "text-xs font-mono px-2.5 py-0.5 rounded-full font-bold bg-amber-500/20 text-amber-400 border border-amber-500/40";
+        statusPill.innerText = "CAUTION: HIGH UNCERTAINTY";
+        scoreDisplay.className = "text-5xl font-extrabold font-mono tracking-tight text-amber-400";
+        scoreDisplay.innerText = `${riskScore}% RISK`;
+        headline.innerText = "High Uncertainty: Verify Before Submitting Work";
+        subtext.innerText = "Multiple missing credentials or excessive assignment demands detected. High probability of unpaid labor exploitation.";
+        actionText.innerHTML = `
+          <strong>Action Plan:</strong><br>
+          1. Run an <a href="#walkthrough" class="text-amber-400 underline font-semibold">MCA Portal Search</a> to confirm if ${company} is a registered legal entity.<br>
+          2. Request communication from an official corporate email domain.<br>
+          3. Do not complete multi-day take-home tasks without a screening call.
+        `;
+      } else {
+        statusPill.className = "text-xs font-mono px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40";
+        statusPill.innerText = "CLEAN: LOW RISK";
+        scoreDisplay.className = "text-5xl font-extrabold font-mono tracking-tight text-emerald-400";
+        scoreDisplay.innerText = `${riskScore}% RISK`;
+        headline.innerText = "Standard Legitimate Indicators Observed";
+        subtext.innerText = "No predatory upfront fee demands or anomalous generic recruiter addresses found.";
+        actionText.innerHTML = `
+          <strong>Action Plan:</strong><br>
+          1. Verify mentor reporting hierarchy and stipend disbursement dates in writing.<br>
+          2. Proceed with regular technical interview prep and portfolio presentation.
+        `;
+      }
+
+      // Render flags
+      if (flags.length === 0) {
+        flagsContainer.innerHTML = `
+          <div class="text-xs font-mono uppercase text-slate-500">Flags & Observations:</div>
+          <div class="p-3 rounded-lg bg-emerald-950/30 border border-emerald-500/30 text-xs text-emerald-300 flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 shrink-0"></i>
+            <span>No red flags detected in provided text. Professional channels maintained.</span>
+          </div>
+        `;
+      } else {
+        flagsContainer.innerHTML = `
+          <div class="text-xs font-mono uppercase text-slate-500">Flags & Observations (${flags.length}):</div>
+          ${flags.map(f => `
+            <div class="p-3 rounded-lg ${f.type === 'critical' ? 'bg-rose-950/40 border border-rose-500/40 text-rose-200' : 'bg-amber-950/30 border border-amber-500/30 text-amber-200'} text-xs space-y-1">
+              <strong class="font-bold flex items-center gap-1.5 ${f.type === 'critical' ? 'text-rose-400' : 'text-amber-400'}">
+                <i data-lucide="${f.type === 'critical' ? 'alert-octagon' : 'alert-triangle'}" class="w-3.5 h-3.5"></i>
+                ${f.label}
+              </strong>
+              <p class="text-[11px] leading-relaxed text-slate-300">${f.desc}</p>
+            </div>
+          `).join('')}
+        `;
+      }
+
+      lucide.createIcons();
+    }
+
+    // 4. Modal Controls
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id).classList.add('flex');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById(id).classList.remove('flex');
+    }
+
+    // 5. Submit Community Report
+    function submitCommunityReport() {
+      const company = document.getElementById('rep-company').value.trim();
+      const cat = document.getElementById('rep-category').value;
+      const fee = document.getElementById('rep-fee').value.trim();
+      const details = document.getElementById('rep-details').value.trim();
+
+      let badge = "🚩 Fee Scam (Reported)";
+      if (cat === 'ghost') badge = "👻 Ghost Listing (Reported)";
+      if (cat === 'spam') badge = "⚠️ WhatsApp Spam (Reported)";
+      if (cat === 'fake') badge = "🛑 Fake Impersonation";
+
+      const newRecord = {
+        id: "rec-" + Date.now(),
+        company: company,
+        role: "Student Applicant Report",
+        type: cat === 'fake' || cat === 'spam' ? 'scam' : cat,
+        badge: badge,
+        details: `${details} ${fee ? `[Demanded: ${fee}]` : ''}`,
+        seniorTip: "Community submission verified by cohort peers. Avoid unverified links.",
+        date: "Just Now · LPU Student",
+        upvotes: 1
+      };
+
+      bankRecords.unshift(newRecord);
+      renderBank(bankRecords);
+      closeModal('report-modal');
+
+      // Scroll to bank
+      document.getElementById('experience-bank').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 6. Copy Script Template
+    function copyScript(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.innerHTML;
+        btn.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Copied to Clipboard!`;
+        lucide.createIcons();
+        setTimeout(() => {
+          btn.innerHTML = original;
+          lucide.createIcons();
+        }, 2500);
+      });
+    }
+
+    // Initialize Bank on Load
+    renderBank(bankRecords);
+  </script>
+</body>
+</html>

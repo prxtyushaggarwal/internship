@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INT335 · Project P24 | Design Thinking Slide Deck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between p-6 sm:p-12 select-none">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between border-b border-slate-800 pb-4">
+    <div class="flex items-center space-x-3">
+      <span class="px-2.5 py-1 rounded bg-rose-600 text-white font-mono font-bold text-xs">LPU</span>
+      <span class="text-xs font-mono text-sky-400 font-bold" id="deck-code">INT335 · P24 / 01</span>
+      <span class="text-slate-600">|</span>
+      <span class="text-xs text-slate-400" id="deck-subtitle">Design Thinking Project Presentation</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="index.html" class="text-xs font-mono text-slate-400 hover:text-white transition flex items-center gap-1">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Back to Live App
+      </a>
+      <span class="text-xs font-mono text-slate-500" id="deck-counter">Slide 1 of 12</span>
+    </div>
+  </header>
+
+  <!-- Slide Stage -->
+  <main class="flex-1 flex items-center justify-center my-8" id="stage">
+    <!-- Injected dynamically -->
+  </main>
+
+  <!-- Footer Controls -->
+  <footer class="flex items-center justify-between border-t border-slate-800 pt-4">
+    <div class="text-xs text-slate-500 font-mono hidden sm:block">
+      Navigate with <kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-300">←</kbd> and <kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-300">→</kbd> or Spacebar
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="prev()" id="prev-btn" class="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold border border-slate-800 transition flex items-center gap-1">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Previous
+      </button>
+      <button onclick="next()" id="next-btn" class="px-5 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold transition flex items-center gap-1">
+        Next <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    const slides = [
+      {
+        code: "INT335 · P24 / 01",
+        subtitle: "Title Slide",
+        html: `
+          <div class="text-center space-y-6 max-w-3xl">
+            <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-sky-400">DESIGN THINKING · PROJECT P24</span>
+            <h1 class="text-5xl sm:text-6xl font-extrabold text-white tracking-tight">Is This Internship <span class="text-sky-400">Real?</span></h1>
+            <p class="text-xl text-slate-300 max-w-xl mx-auto">Helping students assess off-campus internship opportunities.</p>
+            <div class="pt-2 text-xs font-mono text-slate-500">INT335 · Lovely Professional University</div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 02",
+        subtitle: "The Problem",
+        html: `
+          <div class="max-w-4xl w-full space-y-6">
+            <h2 class="text-3xl font-extrabold text-white">01 / The Problem: The Internship Search Can Hide Key Information</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+                <div class="text-amber-400 font-bold font-mono text-lg mb-2">01 Spam</div>
+                <p class="text-sm text-slate-300">Unwanted or misleading messages compete with legitimate opportunities on open networks.</p>
+              </div>
+              <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+                <div class="text-rose-400 font-bold font-mono text-lg mb-2">02 Fee Scams</div>
+                <p class="text-sm text-slate-300">Some offers ask students to pay before they can take part (seat reservation, kit, training).</p>
+              </div>
+              <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+                <div class="text-indigo-400 font-bold font-mono text-lg mb-2">03 Ghost Listings</div>
+                <p class="text-sm text-slate-300">Postings remain visible even when inactive, or are used to harvest free student work.</p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 03",
+        subtitle: "Why It Matters",
+        html: `
+          <div class="max-w-4xl w-full space-y-6">
+            <h2 class="text-3xl font-extrabold text-white">02 / Why It Matters: A Bad Opportunity Costs More Than Money</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+                <div class="text-rose-400 font-bold font-mono text-lg mb-2">01 Money</div>
+                <p class="text-sm text-slate-300">A fee or other direct loss.</p>
+              </div>
+              <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+                <div class="text-amber-400 font-bold font-mono text-lg mb-2">02 Time</div>
+                <p class="text-sm text-slate-300">Effort spent pursuing a false lead or unpaid assignment.</p>
+              </div>
+              <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+                <div class="text-sky-400 font-bold font-mono text-lg mb-2">03 Confidence</div>
+                <p class="text-sm text-slate-300">More hesitation about applying again.</p>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-900 border border-sky-500/30 text-center text-sm font-semibold text-sky-300">
+              Research Question: Which cost feels most real to students at LPU?
+            </div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 04",
+        subtitle: "People Involved",
+        html: `
+          <div class="max-w-4xl w-full space-y-6">
+            <h2 class="text-3xl font-extrabold text-white">03 / People Involved: Four Perspectives Shape the Experience</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-5 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-sky-400 font-mono font-bold text-xs">01 STUDENTS SEARCHING NOW</span>
+                <p class="text-xs text-slate-300 mt-2">What do they trust, compare, and verify?</p>
+              </div>
+              <div class="p-5 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-emerald-400 font-mono font-bold text-xs">02 SENIORS WITH EXPERIENCE</span>
+                <p class="text-xs text-slate-300 mt-2">How did they find an internship? What would they tell a junior?</p>
+              </div>
+              <div class="p-5 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-rose-400 font-mono font-bold text-xs">03 STUDENTS WITH BAD EXPERIENCES</span>
+                <p class="text-xs text-slate-300 mt-2">What warning signs did they notice—or miss?</p>
+              </div>
+              <div class="p-5 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-purple-400 font-mono font-bold text-xs">04 T&P STAFF</span>
+                <p class="text-xs text-slate-300 mt-2">What questions and concerns do students bring to them?</p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 05",
+        subtitle: "Design Thinking · 01 Empathize",
+        html: `
+          <div class="max-w-4xl w-full space-y-6">
+            <h2 class="text-3xl font-extrabold text-white">Design Thinking · 01 Empathize: Follow Real Search Decisions</h2>
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <div class="flex gap-4 font-mono text-xs text-sky-400">
+                <span>Targets: 10+ Interviews</span> · <span>10+ Anonymised Listings</span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                <div class="p-3 rounded-lg bg-slate-950 border border-slate-800">1. Where did you find it?</div>
+                <div class="p-3 rounded-lg bg-slate-950 border border-slate-800">2. What did you check?</div>
+                <div class="p-3 rounded-lg bg-slate-950 border border-slate-800">3. What made you hesitate?</div>
+                <div class="p-3 rounded-lg bg-slate-950 border border-slate-800">4. What did you do next?</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 06",
+        subtitle: "Design Thinking · 02 Define",
+        html: `
+          <div class="max-w-4xl w-full space-y-6">
+            <h2 class="text-3xl font-extrabold text-white">Design Thinking · 02 Define: Frame the Need</h2>
+            <div class="space-y-4">
+              <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+                <span class="text-xs font-mono text-amber-400 font-semibold uppercase">POINT OF VIEW · TO BE TESTED</span>
+                <p class="text-lg text-slate-200 mt-2">"Students searching for internships need a quick, trustworthy way to assess an opportunity because important information and peer experiences may be scattered or difficult to verify."</p>
+              </div>
+              <div class="p-6 rounded-2xl bg-slate-900 border border-sky-500/40">
+                <span class="text-xs font-mono text-sky-400 font-semibold uppercase">HOW MIGHT WE…</span>
+                <p class="text-2xl font-bold text-white mt-2">"…help a student judge quickly whether an internship opportunity is <span class='text-sky-400'>real and worth it</span>?"</p>
+                <p class="text-xs text-slate-400 mt-1">"Worth it" includes role expectations and learning value—not only company legitimacy.</p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 07",
+        subtitle: "Design Thinking · 03 Ideate",
+        html: `
+          <div class="max-w-4xl w-full space-y-6">
+            <h2 class="text-3xl font-extrabold text-white">Design Thinking · 03 Ideate: Explore & Screen</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white block mb-1">01 Red-flag checklist</strong>
+                <span class="text-slate-400">Spot questions to investigate</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white block mb-1">02 Senior experience bank</strong>
+                <span class="text-slate-400">Learn from past applicants</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white block mb-1">03 Verification walkthrough</strong>
+                <span class="text-slate-400">Know what to check next</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white block mb-1">04 T&P-endorsed channel</strong>
+                <span class="text-slate-400">Find trusted guidance</span>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400 text-center font-mono">
+              Screen each idea against: User need · Trust · Easy to test · Can be maintained
+            </div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 08",
+        subtitle: "Design Thinking · 04 Prototype",
+        html: `
+          <div class="max-w-4xl w-full space-y-6">
+            <h2 class="text-3xl font-extrabold text-white">Design Thinking · 04 Prototype: Make the Chosen Idea Testable</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center">
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="font-mono text-sky-400 text-xs">01</span>
+                <div class="font-bold text-white text-sm mt-1">Review Listing</div>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="font-mono text-amber-400 text-xs">02</span>
+                <div class="font-bold text-white text-sm mt-1">Notice Missing Details</div>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="font-mono text-sky-400 text-xs">03</span>
+                <div class="font-bold text-white text-sm mt-1">Choose What to Verify</div>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="font-mono text-emerald-400 text-xs">04</span>
+                <div class="font-bold text-white text-sm mt-1">Decide Next Action</div>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-center text-xs text-slate-400">
+              Low-fidelity is enough: Paper screens or clickable flows test the logic before building a service.
+            </div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 09",
+        subtitle: "Design Thinking · 05 Test",
+        html: `
+          <div class="max-w-4xl w-full space-y-6">
+            <h2 class="text-3xl font-extrabold text-white">Design Thinking · 05 Test: Observe Decisions, Not Just Reactions</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white text-sm block mb-1">1. Can they spot missing details?</strong>
+                <span class="text-slate-400">Company, role, pay, contact, or expectations</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white text-sm block mb-1">2. Do they know what to verify next?</strong>
+                <span class="text-slate-400">A clear next step instead of a vague warning</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white text-sm block mb-1">3. Can they explain their decision?</strong>
+                <span class="text-slate-400">Reasoning matters more than a simple score</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white text-sm block mb-1">4. Do they understand the limits?</strong>
+                <span class="text-slate-400">Guidance supports judgement; it is not a guarantee</span>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 10",
+        subtitle: "Project Results",
+        html: `
+          <div class="max-w-4xl w-full space-y-6">
+            <h2 class="text-3xl font-extrabold text-white">Project Results: Expected Outcomes and Intended Impact</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-sky-400 font-bold block mb-1">EVIDENCE</span>
+                <span class="text-slate-300">Real scam and ghost patterns from anonymised listings.</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-purple-400 font-bold block mb-1">CONCEPT</span>
+                <span class="text-slate-300">A tested vetting aid & experience repository.</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-amber-400 font-bold block mb-1">LEARNING</span>
+                <span class="text-slate-300">Reusable red-flag awareness for future applicants.</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-emerald-400 font-bold block mb-1">INTENDED IMPACT</span>
+                <span class="text-slate-300">Fewer victims, faster discovery, informed choices.</span>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs text-rose-300 text-center">
+              Boundary: Decision support—not a guarantee that an offer is safe.
+            </div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 11",
+        subtitle: "Evaluation",
+        html: `
+          <div class="max-w-4xl w-full space-y-6">
+            <h2 class="text-3xl font-extrabold text-white">Evaluation: How We’ll Judge Whether the Concept Helps</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white block mb-1">01 Task clarity</strong>
+                <span class="text-slate-400">Can students explain the steps they would take?</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white block mb-1">02 Next action</strong>
+                <span class="text-slate-400">Can they name what to verify next?</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white block mb-1">03 Reasoning</strong>
+                <span class="text-slate-400">Can they explain why they trust or question it?</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                <strong class="text-white block mb-1">04 Safe limits</strong>
+                <span class="text-slate-400">Do they know the tool cannot guarantee legitimacy?</span>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        code: "INT335 · P24 / 12",
+        subtitle: "Conclusion",
+        html: `
+          <div class="text-center space-y-6 max-w-3xl">
+            <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-sky-400">CONCLUSION</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white">"How can students make informed internship decisions with greater confidence?"</h2>
+            <div class="text-sm font-mono text-slate-400">Listen → Define → Explore → Prototype → Test</div>
+            <div class="text-xl font-bold text-sky-400 pt-4">Thank you! Questions?</div>
+          </div>
+        `
+      }
+    ];
+
+    let current = 0;
+    function render() {
+      const s = slides[current];
+      document.getElementById('deck-code').innerText = s.code;
+      document.getElementById('deck-subtitle').innerText = s.subtitle;
+      document.getElementById('deck-counter').innerText = `Slide ${current + 1} of ${slides.length}`;
+      document.getElementById('stage').innerHTML = s.html;
+      document.getElementById('prev-btn').disabled = current === 0;
+      document.getElementById('next-btn').innerText = current === slides.length - 1 ? 'Go to App' : 'Next';
+      lucide.createIcons();
+    }
+
+    function next() {
+      if (current < slides.length - 1) {
+        current++;
+        render();
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    function prev() {
+      if (current > 0) {
+        current--;
+        render();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    render();
+  </script>
+</body>
+</html>
